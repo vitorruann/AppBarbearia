@@ -22,7 +22,7 @@ const TabBarOptions = {
     fontSize: 15,
   },
   style: {
-    backgroundColor: '#8d41a8',
+    backgroundColor: '#858080',
   },
   activeTintColor: '#FFF',
   inactiveTintColor: 'rgba(255,255,255, 0.6)',
