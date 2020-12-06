@@ -14,7 +14,7 @@ const Index = () => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <StatusBar barStyle="light-content" backgroundColor="#858080" />
+        <StatusBar barStyle="light-content" backgroundColor="#700000" />
         <Aplica />
       </PersistGate>
     </Provider>

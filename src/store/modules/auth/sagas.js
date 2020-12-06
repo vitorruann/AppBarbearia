@@ -23,6 +23,8 @@ export function* signIn({ payload }) {
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
+    Alert.alert('Login com sucesso', 'Login realizado com sucesso');
+
     yield put(signInSuccess(token, user));
 
     // history.push('/dashboard');
@@ -43,6 +45,8 @@ export function* signUp({ payload }) {
       email,
       password,
     });
+
+    Alert.alert('Cadastro com sucesso', 'Cadastro realizado com sucesso');
 
     // history.push('/');
   } catch (error) {

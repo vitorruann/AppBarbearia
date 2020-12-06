@@ -22,7 +22,7 @@ const TabBarOptions = {
     fontSize: 15,
   },
   style: {
-    backgroundColor: '#858080',
+    backgroundColor: '#700000',
   },
   activeTintColor: '#FFF',
   inactiveTintColor: 'rgba(255,255,255, 0.6)',
@@ -30,12 +30,14 @@ const TabBarOptions = {
 
 const optionsDashbroad = {
   title: 'Agendamentos',
+  unmountOnBlur: true,
   tabBarIcon: ({ color }) => <Icon name="event" size={20} color={color} />,
 };
 
 const optionsNew = {
   title: 'Agendar',
   tabBarVisible: false,
+  unmountOnBlur: true,
   tabBarIcon: () => (
     <Icon
       name="add-circle-outline"
@@ -55,6 +57,7 @@ const screenOptionsNew = {
 
 const optionsProfile = {
   title: 'Meu perfil',
+  unmountOnBlur: true,
   tabBarIcon: ({ color }) => <Icon name="person" size={20} color={color} />,
 };
 
