@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Text, View } from 'react-native';
 import api from '~/services/api';
 
 import Background from '~/components/Background';
@@ -9,13 +10,11 @@ import { Container, HourList, Hour, Title } from './styles';
 const SelectDataTime = ({ route, navigation }) => {
   const [date, setDate] = useState(new Date());
   const [hours, setHours] = useState([]);
-
-  const { provider } = route.params;
-  console.tron.log(provider.id);
+  const { prov } = route.params;
 
   useEffect(() => {
     async function loadAvailable() {
-      const response = await api.get(`providers/${provider.id}/available`, {
+      const response = await api.get(`providers/${prov.id}/available`, {
         params: {
           date: date.getTime(),
         },
@@ -24,12 +23,12 @@ const SelectDataTime = ({ route, navigation }) => {
     }
 
     loadAvailable();
-  }, [date, provider.id]);
+  }, [date, prov.id]);
 
-  function handleSelectHour(time) {
+  function handleSelectHour(tim) {
     navigation.navigate('Confirm', {
-      provider,
-      time,
+      provider: prov,
+      time: tim,
     });
   }
 
@@ -37,7 +36,6 @@ const SelectDataTime = ({ route, navigation }) => {
     <Background>
       <Container>
         <DataInput date={date} onChange={setDate} />
-
         <HourList
           data={hours}
           extraData={date}

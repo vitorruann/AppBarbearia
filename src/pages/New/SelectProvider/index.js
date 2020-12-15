@@ -11,7 +11,6 @@ const SelectProvider = ({ navigation }) => {
   useEffect(() => {
     async function loadProviders() {
       const response = await api.get('providers');
-      console.tron.log(response);
       setProviders(response.data);
     }
 
@@ -27,7 +26,7 @@ const SelectProvider = ({ navigation }) => {
           renderItem={({ item: provider }) => (
             <Provider
               onPress={() =>
-                navigation.navigate('SelectDataTime', { provider })
+                navigation.navigate('SelectDataTime', { prov: provider })
               }
             >
               <Avatar

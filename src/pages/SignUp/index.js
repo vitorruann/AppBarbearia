@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import logo from '~/assets/logo.png';
 import Background from '~/components/Background';
-import { signUpRequest } from '~/store/modules/auth/actions';
+import { signUpRequest, signUpInit } from '~/store/modules/auth/actions';
 
 import {
   Container,
@@ -19,8 +19,22 @@ const SignUp = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [log, setLog] = useState(null);
+  const login = useSelector((state) => state.auth.log);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    async function veriLogin() {
+      if (log === 'Success') {
+        navigation.navigate('SignIn');
+      }
+    }
+    dispatch(signUpInit());
+
+    setLog(login);
+    veriLogin();
+  }, [log, login]);
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -29,6 +43,11 @@ const SignUp = ({ navigation }) => {
 
   function handleSubmit() {
     dispatch(signUpRequest(name, email, password));
+    setTimeout(() => {
+      if (login === 'Success') {
+        navigation.navigate('SignIn');
+      }
+    }, 500);
   }
 
   return (

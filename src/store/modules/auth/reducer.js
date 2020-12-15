@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   token: null,
   signed: false,
   loading: false,
+  log: false,
 };
 
 export default function auth(state = INITIAL_STATE, action) {
@@ -26,6 +27,14 @@ export default function auth(state = INITIAL_STATE, action) {
       case '@auth/SIGN_OUT': {
         draft.token = null;
         draft.signed = false;
+        break;
+      }
+      case '@auth/SIGN_UP_SUCCESS': {
+        draft.log = 'Success';
+        break;
+      }
+      case '@auth/SIGN_UP_INIT': {
+        draft.log = 'Fail';
         break;
       }
       default:

@@ -111,16 +111,16 @@ function SignUpScreen({ navigation }) {
   return <SignUp navigation={navigation} />;
 }
 
-function DashboardScreen() {
-  return <Dashboard />;
+function DashboardScreen({ navigation }) {
+  return <Dashboard navigation={navigation} />;
 }
 
-function ProfileScreen() {
-  return <Profile />;
+function ProfileScreen({ navigation }) {
+  return <Profile navigation={navigation} />;
 }
 
-function SelectProviderScreen({ navigation }) {
-  return <SelectProvider navigation={navigation} />;
+function SelectProviderScreen({ navigation, route }) {
+  return <SelectProvider route={route} navigation={navigation} />;
 }
 
 function SelectDataTimeScreen({ navigation, route }) {
@@ -128,7 +128,7 @@ function SelectDataTimeScreen({ navigation, route }) {
 }
 
 function ConfirmScreen({ navigation, route }) {
-  return <Confirm route={route} navigation={navigation}/>;
+  return <Confirm route={route} navigation={navigation} />;
 }
 
 const AppTab = createBottomTabNavigator();
@@ -136,9 +136,7 @@ const Stack = createStackNavigator();
 
 function New() {
   return (
-    <Stack.Navigator
-      screenOptions={screenOptionsNew}
-    >
+    <Stack.Navigator screenOptions={screenOptionsNew}>
       <Stack.Screen
         name="SelectProvider"
         options={optionsSelectProvider}
@@ -149,10 +147,10 @@ function New() {
         options={optionsSelectDataTime}
         component={SelectDataTimeScreen}
       />
-      <Stack.Screen name="Confirm"
+      <Stack.Screen
+        name="Confirm"
         component={ConfirmScreen}
         options={optionsConfirm}
-        component={ConfirmScreen}
       />
     </Stack.Navigator>
   );
@@ -160,19 +158,13 @@ function New() {
 
 function App() {
   return (
-    <AppTab.Navigator
-      tabBarOptions={TabBarOptions}
-    >
+    <AppTab.Navigator tabBarOptions={TabBarOptions}>
       <AppTab.Screen
         name="Dashboard"
         options={optionsDashbroad}
         component={DashboardScreen}
       />
-      <AppTab.Screen
-        name="New"
-        options={optionsNew}
-        component={New}
-      />
+      <AppTab.Screen name="New" options={optionsNew} component={New} />
       <AppTab.Screen
         name="Profile"
         options={optionsProfile}

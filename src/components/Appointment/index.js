@@ -8,12 +8,11 @@ import { Container, Left, Avatar, Info, Name, Time } from './styles';
 
 const Appointment = ({ data, onCancel }) => {
   const dateParsed = useMemo(() => {
-  const dateZone = addHours(parseISO(data.date), 3);
+    const dateZone = addHours(parseISO(data.date), 3);
 
-  return formatRelative(dateZone, new Date(), {
-    locale: pt,
-    addSuffix: true,
-
+    return formatRelative(dateZone, new Date(), {
+      locale: pt,
+      addSuffix: true,
     });
   }, [data.date]);
   return (

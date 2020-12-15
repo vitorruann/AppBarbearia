@@ -122,7 +122,7 @@ const Profile = () => {
           />
 
           <SubmitButton onPress={handleSubmit}>Atualizar perfil</SubmitButton>
-          <LogoutButton onPress={handleLogout}>Sair do GoBarber</LogoutButton>
+          <LogoutButton onPress={handleLogout}>Sair do FindBarber</LogoutButton>
         </Form>
       </Container>
     </Background>

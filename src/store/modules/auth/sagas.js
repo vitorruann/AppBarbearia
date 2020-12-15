@@ -3,7 +3,7 @@ import { takeLatest, call, put, all } from 'redux-saga/effects';
 
 import api from '~/services/api';
 
-import { signInSuccess, signFailure } from './actions';
+import { signInSuccess, signFailure, signUpSuccess } from './actions';
 
 export function* signIn({ payload }) {
   try {
@@ -29,8 +29,6 @@ export function* signIn({ payload }) {
 
     // history.push('/dashboard');
   } catch (error) {
-    console.tron.log(error);
-
     Alert.alert('Falha na autenticação', 'Erro no login, verifique seus dados');
     yield put(signFailure());
   }
@@ -47,8 +45,7 @@ export function* signUp({ payload }) {
     });
 
     Alert.alert('Cadastro com sucesso', 'Cadastro realizado com sucesso');
-
-    // history.push('/');
+    yield put(signUpSuccess());
   } catch (error) {
     Alert.alert('Falha no cadastro', 'Erro no cadastro, verifique seus dados');
 

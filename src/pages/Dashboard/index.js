@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useIsFocused } from '@react-navigation/native'
+import { useIsFocused } from '@react-navigation/native';
 import api from '~/services/api';
 
 import Background from '~/components/Background';
@@ -7,11 +7,11 @@ import Appointment from '~/components/Appointment';
 
 import { Container, Title, List } from './styles';
 
-const Dashboard = () => {
+const Dashboard = ({ navigation }) => {
   const [appointments, setAppointments] = useState([]);
   const isFocused = useIsFocused();
 
-  async function loadAppointment(s) {
+  async function loadAppointment() {
     const response = await api.get('appointments');
 
     setAppointments(response.data);
@@ -19,15 +19,14 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (isFocused) {
-      loadAppointment()
+      loadAppointment();
     }
   }, [isFocused]);
 
   async function handleCancel(id) {
-    console.tron.log(id);
-
     const response = await api.delete(`appointments/${id}`);
-    console.tron.log(response);
+    navigation.push('Dashboard');
+
     setAppointments(
       appointments.map((appointment) =>
         appointment.id === id
